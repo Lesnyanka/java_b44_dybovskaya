@@ -1,7 +1,7 @@
-package geometry;
+package ru.ld.geometry;
 
-import geometry.figures.Rectangle;
-import geometry.figures.Square;
+import ru.ld.geometry.figures.Rectangle;
+import ru.ld.geometry.figures.Square;
 
 public class Geometry {
     public static void main(String[] args) {

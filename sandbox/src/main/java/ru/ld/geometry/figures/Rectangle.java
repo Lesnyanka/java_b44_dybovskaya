@@ -1,4 +1,4 @@
-package geometry.figures;
+package ru.ld.geometry.figures;
 
 public class Rectangle {
     public static void printRectanglArea(double a, double b) {
