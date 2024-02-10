@@ -1,4 +1,4 @@
-package ru.ld.geometry.figures;
+package geometry.figures;
 
 public class Square {
     public static void printSquareArea(double side) {
