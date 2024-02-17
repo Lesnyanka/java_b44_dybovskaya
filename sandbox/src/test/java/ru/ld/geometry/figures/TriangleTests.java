@@ -24,7 +24,7 @@ public class TriangleTests {
             new Triangle(-5.0, 10.0, 10.0);
             Assertions.fail();
 
-        }catch(IllegalArgumentException exeption){
+        }catch(IllegalArgumentException exception){
             //ok
         }
 
@@ -34,15 +34,40 @@ public class TriangleTests {
     }
     /*Сумма двух любых сторон должна быть не меньше третьей стороны*/
     @Test
-    void violationTringleInequality(){
+    void violationTriangleInequality(){
         try {
             new Triangle(5.0, 8.0, 15.0);
             Assertions.fail();
-        }catch(IllegalArgumentException exeption){
+        }catch(IllegalArgumentException exception){
             //ok
         }
-        }
     }
+      /* Сравнение треугольников*/
+
+    @Test
+
+    void compareTriangles() {
+          var tri1 = new Triangle(6.0, 7.0, 10.0);
+          var tri2 = new Triangle(6.0, 10.0, 7.0);
+          var tri3 = new Triangle(7.0, 6.0, 10.0);
+          var tri4 = new Triangle(7.0, 10.0, 6.0);
+          var tri5 = new Triangle(10.0, 7.0, 6.0);
+          var tri6 = new Triangle(10.0, 6.0, 7.0);
+          Assertions.assertEquals(tri1, tri2);
+          Assertions.assertEquals(tri1, tri3);
+          Assertions.assertEquals(tri2, tri3);
+          Assertions.assertEquals(tri4, tri5);
+          Assertions.assertEquals(tri5, tri6);
+          Assertions.assertEquals(tri3, tri6);
+
+      }
+
+
+
+
+
+
+}
 
 
 
