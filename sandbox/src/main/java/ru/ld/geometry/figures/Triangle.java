@@ -15,18 +15,30 @@ public record Triangle(double a, double b, double c) {
     }
 
     /* 3.1 создания треугольника с отрицательной длиной стороны
-    * 3.2 неравенство треугольника*/
-    public void Triangle() {
-        if (a < 0 || b < 0 || c < 0){
+   3. Нарушается неравенство треугольника
+   */
+    public  Triangle(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        if (a < 0 || b < 0 || c < 0) {
             throw new IllegalArgumentException("Triangle side should be non-negative");
-        }
-        else if ((a + b) > c || (a + c) > b || (c + b) > a ){
+        } else if ((a + b) > c || (a + c) > b || (c + b) > a ){
             throw new IllegalArgumentException("Violation Triangle inequality");
         }
-    }
+
+        }
 
 
-    /*Сравнение треугольников*/
+
+
+
+
+
+
+
+
+    /*4.1 Сравнение треугольников*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

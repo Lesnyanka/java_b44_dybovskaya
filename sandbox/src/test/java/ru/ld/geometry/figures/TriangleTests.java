@@ -15,24 +15,24 @@ public class TriangleTests {
         Assertions.assertEquals(81.97560612767678, new Triangle(16.0, 13.0, 13.0).squareTriangle());
 
     }
-/* Нельзя создать треугольник с отрицательной стороной/*
 
- */
+
+
+
+
+
+    /* 3.1 исключение при попытке создать треугольник с отрицательной длиной стороны,*/
     @Test
-    void cannotCreateTriangleWithNegativeSide(){
+    void cannotCreativeTriangleWithNegativeSide(){
         try {
-            new Triangle(-5.0, 10.0, 10.0);
+            new Triangle(-5.0, 8.0, 15.0);
             Assertions.fail();
-
         }catch(IllegalArgumentException exception){
             //ok
         }
-
-
-
-
     }
-    /*Сумма двух любых сторон должна быть не меньше третьей стороны*/
+
+    /*Нарушается неравенство треугольника*/
     @Test
     void violationTriangleInequality(){
         try {
@@ -42,7 +42,8 @@ public class TriangleTests {
             //ok
         }
     }
-      /* Сравнение треугольников*/
+
+      /* 4.1 Сравнение треугольников*/
 
     @Test
 
