@@ -1,3 +1,4 @@
+import model.GroupData;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -9,7 +10,7 @@ public class GroupCreationTests2 extends TestBase {
         openGroupsPage();
 
 
-        createGroup("group name", "group header", "group footer");
+        createGroup(new GroupData("group name", "group header", "group footer"));
     }
 
 
@@ -19,7 +20,18 @@ public class GroupCreationTests2 extends TestBase {
         openGroupsPage();
 
         driver.findElement(By.linkText("groups")).click();
-        createGroup("", "", "");
+        createGroup(new GroupData());
+
+    }
+    @Test
+    public void canCreateGroupWithNameOnly() {
+
+        openGroupsPage();
+        var emptyGroup = new GroupData();
+        var groupWithName = emptyGroup.withName("some name");
+
+
+        createGroup(groupWithName);
 
     }
 }
