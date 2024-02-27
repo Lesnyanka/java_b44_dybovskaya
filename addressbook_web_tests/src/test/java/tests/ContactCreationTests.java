@@ -7,7 +7,7 @@ public class ContactCreationTests extends TestBase {
         @Test
         public void canCreateContact() {
 
-                app.contacts().createContact(new ContactData("contact_lname", "contact_fname", "contact_address", "contact_email", "contact_phone"));
+                app.contacts().createContact(new ContactData("contact lastname", "contact firstname", "contact address", "contact email", "contact mobile"));
         }
 
 }

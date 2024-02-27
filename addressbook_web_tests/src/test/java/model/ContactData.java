@@ -1,33 +1,33 @@
 package model;
 
 
-    public record ContactData(String  lname, String fname, String address, String email, String phone ) {
+    public record ContactData(String lastname, String firstname, String address, String email, String mobile ) {
         public ContactData() {this("", "", "", "", "");
         }
 
 
-        public model.ContactData withLast_name(String lname) {
-            return new model.ContactData(lname, this.fname, this.address, this.email, this.phone);
+        public model.ContactData withLastname(String lastname) {
+            return new model.ContactData(lastname, this.firstname, this.address, this.email, this.mobile);
 
         }
 
-        public model.ContactData withFirst_name(String fname) {
-            return new model.ContactData(this.lname, fname, this.address, this.email, this.phone);
+        public model.ContactData withFirstname(String firstname) {
+            return new model.ContactData(this.lastname, firstname, this.address, this.email, this.mobile);
 
         }
 
         public model.ContactData withAddress(String address) {
-            return new model.ContactData(this.lname, this.fname, address, this.email, this.phone);
+            return new model.ContactData(this.lastname,this.firstname, address, this.email, this.mobile);
 
         }
 
         public model.ContactData withEmail(String email) {
-            return new model.ContactData(this.lname, this.fname, this.address, email, this.phone);
+            return new model.ContactData(this.lastname,this.firstname, this.address, email, this.mobile);
 
         }
 
-        public model.ContactData withPhone(String phone) {
-            return new model.ContactData(this.lname, this.fname, this.address, this.email, phone);
+        public model.ContactData withMobile(String mobile) {
+            return new model.ContactData(this.lastname,this.firstname, this.address, this.email, mobile);
 
         }
     }

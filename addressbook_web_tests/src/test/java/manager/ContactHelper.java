@@ -2,6 +2,9 @@ package manager;
 
 import model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+
 
 public class ContactHelper extends HelperBase {
     public ContactHelper(ApplicationManager manager) {
@@ -9,6 +12,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContact(ContactData contact) {
+
         openContactPage();
         //initContactCreation();
         fillContactForm(contact);
@@ -21,11 +25,11 @@ public class ContactHelper extends HelperBase {
     }
 
     private void fillContactForm(ContactData contact) {
-        type(By.name("contact_lname"), contact.lname());
-        type(By.name("contact_fname"), contact.fname());
-        type(By.name("contact_address"), contact.address());
-        type(By.name("contact_email"), contact.email());
-        type(By.name("contact_phone"), contact.phone());
+        type(By.name("lastname"), contact.lastname());
+        type(By.name("firstname"), contact.firstname());
+        type(By.name("address"), contact.address());
+        type(By.name("email"), contact.email());
+        type(By.name("mobile"), contact.mobile());
     }
 
     private void submitContactCreation() {
