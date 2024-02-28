@@ -2,8 +2,6 @@ package manager;
 
 import model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 
 
 public class ContactHelper extends HelperBase {
@@ -12,16 +10,20 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContact(ContactData contact) {
-
         openContactPage();
         //initContactCreation();
         fillContactForm(contact);
         submitContactCreation();
-        returnToHomePage();
+        openHomePage();
     }
 
     private void openContactPage()  {
         click(By.linkText("add new"));
+    }
+
+    public boolean isContactPresent() {
+        openContactPage();
+        return manager.isElementPresent(By.name("selected[]"));
     }
 
     private void fillContactForm(ContactData contact) {
@@ -32,11 +34,20 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contact.mobile());
     }
 
+    public void removeContact() {
+        openHomePage();
+        selectContact();
+        removeSelectedContact();
+        openHomePage();
+    }
+
+
+
     private void submitContactCreation() {
         click(By.name("submit"));
     }
 
-    private void returnToHomePage() {
+    private void openHomePage() {
         click(By.linkText("home"));
     }
 
@@ -50,8 +61,17 @@ public class ContactHelper extends HelperBase {
 
 
 
-    public boolean isContactPresent() {
-        openContactPage();
-        return manager.isElementPresent(By.name("selected[]"));
+
+
+
+
+    private void selectContact() {
+        click(By.name("selected[]"));
+
     }
+
+    private void removeSelectedContact()  {
+        click(By.xpath("//div[@id='content']/form[2]/div[2]"));
+    }
+
 }

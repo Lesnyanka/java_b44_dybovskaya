@@ -11,7 +11,7 @@ public class ContactRemovalTests extends TestBase {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(new ContactData("contact lastname","contact firstname", "contact address", "contact email", "contact mobile"));
         }
-        app.groups().removeGroup();
+        app.contacts().removeContact();
 
     }
 }
