@@ -20,7 +20,6 @@ public class GroupRemovalTests extends TestBase {
         if (app.groups().getCount() == 0){
             app.groups().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
-        int groupCount = app.groups().getCount();
         var oldGroups = app.groups().getList();
         var rnd = new Random();
         var index = rnd.nextInt(oldGroups.size());
