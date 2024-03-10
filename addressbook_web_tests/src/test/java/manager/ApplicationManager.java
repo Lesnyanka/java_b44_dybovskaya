@@ -30,7 +30,7 @@ public class ApplicationManager {
             driver.get(properties.getProperty("web.baseUrl"));
             driver.manage().window().setSize(new Dimension(1280, 680));
 
-            session().login(properties.getProperty("web.username"), properties.getProperty("web.userpassword"));
+            session().login(properties.getProperty("web.username"), properties.getProperty("web.password"));
         }
     }
 
