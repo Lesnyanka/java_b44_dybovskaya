@@ -1,5 +1,8 @@
 package tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import common.CommonFunctions;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
@@ -7,18 +10,28 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
     @Test
-    public void canCreateContact() {
+     void canCreateContact() {
 
-        app.contacts().createContact(new ContactData("", "contact lastname", "contact firstname", "contact address", "contact email", "contact mobile"));
+        var contact = new ContactData()
+                .withLastname(CommonFunctions.randomString(10))
+                .withFirstname(CommonFunctions.randomString(10))
+                .withAddress(CommonFunctions.randomString(10))
+                .withEmail(CommonFunctions.randomString(10))
+                .withMobile(CommonFunctions.randomString(10));
+        app.contacts().createContact(contact);
     }
 
-    public static List<ContactData> contactProvider() {
+    public static List<ContactData> contactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
         for (var lastname : List.of("", "contact name")) {
             for (var firstname : List.of("", "contact firstname")) {
@@ -32,15 +45,21 @@ public class ContactCreationTests extends TestBase {
                 }
             }
         }
-        for (int i = 0; i < 2; i++) {
-            result.add(new ContactData()
-                    .withFirstname(randomString(i * 10))
-                    .withLastname(randomString(i * 10))
-                    .withAddress(randomString(i * 10))
-                    .withEmail(randomString(i * 10))
-                    .withMobile(randomString(i * 10)));
+        var json = "";
+        try(var reader = new FileReader("contacts.xml");
+            var breader = new BufferedReader(reader)
+        ){
+            var line = breader.readLine();
+            while (line != null){
+                json = json + line;
+                line = breader.readLine();
+            }
 
         }
+        //var json = Files.readString(Paths.get("groups.json"));
+        var mapper = new XmlMapper();
+        var value = mapper.readValue(new File("contacts.xml"), new TypeReference<List<ContactData>>(){});
+        result.addAll(value);
         return result;
 
     }

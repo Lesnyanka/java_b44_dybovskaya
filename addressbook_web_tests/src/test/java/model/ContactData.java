@@ -28,12 +28,13 @@ package model;
 
         public model.ContactData withEmail(String email) {
             return new model.ContactData(this.id, this.lastname,this.firstname, this.address, email, this.mobile);
-
         }
 
         public model.ContactData withMobile(String mobile) {
             return new model.ContactData(this.id, this.lastname,this.firstname, this.address, this.email, mobile);
 
         }
+
+
     }
 
