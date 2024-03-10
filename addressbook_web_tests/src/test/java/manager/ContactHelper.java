@@ -1,7 +1,6 @@
 package manager;
 
 import model.ContactData;
-import model.GroupData;
 import org.openqa.selenium.By;
 import java.util.List;
 import java.util.ArrayList;
@@ -20,11 +19,11 @@ public class ContactHelper extends HelperBase {
         openHomePage();
     }
 
-    public void modifyContact(ContactData contact, ContactData modifedContact) {
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openHomePage();
         selectContact(contact);
         initContactModification();
-        fillContactForm(modifedContact);
+        fillContactForm(modifiedContact);
         submitContactModification();
         returnToHomePage();
     }
@@ -88,7 +87,7 @@ public class ContactHelper extends HelperBase {
 
 
     private void initContactCreation() {
-    click(By.name("add new"));
+    click(By.linkText("add new"));
     }
 
 
@@ -117,17 +116,18 @@ public class ContactHelper extends HelperBase {
 
 
 
-    public  List<ContactData> getContactList() {
+    public  List<ContactData> getList() {
         openHomePage();
-        var contacts = new ArrayList<ContactData>();
-        var tds = manager.driver.findElements(By.cssSelector("td.center"));
-        for (var td : tds) {
-            var lastname = td.getText();
-            var firstname = td.getText();
-            var checkbox = td.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-            contacts.add(new ContactData().withId(id).withLastname(lastname).withFirstname(firstname));
 
+        var contacts = new ArrayList<ContactData>();
+        var checkboxes = manager.driver.findElements(By.name("selected[]"));
+        for (var relations : checkboxes) {
+            var lastname = relations.getText();
+            var firstname = relations.getText();
+            var checkbox = relations;
+            var id = checkbox.getAttribute("value");
+
+            contacts.add(new ContactData().withId(id).withLastname((lastname)).withFirstname(firstname));
         }
 
         return contacts;
