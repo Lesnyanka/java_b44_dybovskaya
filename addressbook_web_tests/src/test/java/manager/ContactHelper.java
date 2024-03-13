@@ -37,7 +37,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void initContactModification(ContactData contact)  {
-        click(By.cssSelector(String.format("img[title=Edit]",contact.id())));
+        click(By.xpath(String.format("//a[@href='edit.php?id=%s']", contact.id())));
     }
 
     public void removeContact(ContactData contact) {
