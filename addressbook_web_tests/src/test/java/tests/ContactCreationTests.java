@@ -20,8 +20,7 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
     @Test
-     void canCreateContact() {
-
+    void canCreateContact() {
         var contact = new ContactData()
                 .withLastname(CommonFunctions.randomString(10))
                 .withFirstname(CommonFunctions.randomString(10))
