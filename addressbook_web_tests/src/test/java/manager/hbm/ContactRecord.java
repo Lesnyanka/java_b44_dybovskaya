@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 import java.util.Date;
 
-@Entity
+
 @Table(name = "addressbook")
 
 public class ContactRecord {
@@ -19,16 +19,20 @@ public class ContactRecord {
     public String firstname;
 
     public String address;
+    public String email;
+    public String mobile;
 
     public Date deprecated = new Date();
 
     public ContactRecord(){}
 
-    public ContactRecord(int id, String lastname, String firstname, String address){
+    public ContactRecord(int id, String lastname, String firstname, String address, String email, String mobile ){
 
         this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
         this.address = address;
+        this.email = email;
+        this.mobile = mobile;
     }
 }
