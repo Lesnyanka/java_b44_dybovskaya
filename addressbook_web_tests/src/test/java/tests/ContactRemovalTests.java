@@ -12,7 +12,7 @@ public class ContactRemovalTests extends TestBase {
 
     @Test
     public void canRemoveContact() {
-        if (app.hbm().getContactCount()) {
+        if (app.hbm().getContactCount()==0) {
             app.hbm().createContact(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact mobile"));
         }
         var oldContacts = app.hbm().getContactList();
@@ -27,11 +27,11 @@ public class ContactRemovalTests extends TestBase {
 
     @Test
     void canRemovalContactsAtOnce() {
-        if (app.contacts().getCount() == 0){
-            app.contacts().createContact(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact mobile"));
+        if (app.hbm().getContactCount() == 0){
+            app.hbm().createContact(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact mobile"));
         };
         app.contacts().removeAllContacts();
-        Assertions.assertEquals(0, app.contacts().getCount());
+        Assertions.assertEquals(0, app.hbm().getContactCount());
 
     }
 }

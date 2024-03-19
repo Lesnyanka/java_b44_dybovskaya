@@ -1,5 +1,6 @@
 package manager;
 
+import model.ContactData;
 import model.GroupData;
 
 import java.sql.DriverManager;
@@ -30,6 +31,27 @@ public class JdbcHelper extends HelperBase {
             throw new RuntimeException(e);
         }
         return groups;
+
+    }
+
+    public List<ContactData> getContactList() {
+        var contacts = new ArrayList<ContactData>();
+        try (var conn = DriverManager.getConnection("jdbc:mysql://localhost/addressbook", "root", "");
+             var statement = conn.createStatement();
+             var result = statement.executeQuery("SELECT addressbook_id, addressbook_lastname, addressbook_firstname, addressbook_address addressbook_mobile FROM addressbook"))
+        {
+            while (result.next()) {
+                contacts.add(new ContactData()
+                        .withId(result.getString("addressbook_id"))
+                        .withLastname(result.getString("addressbook_lastname"))
+                        .withFirstname(result.getString("addressbook_firstname"))
+                        .withAddress(result.getString("addressbook_address")));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return contacts;
 
     }
 
