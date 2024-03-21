@@ -3,6 +3,8 @@ package model;
 
 
 public record GroupData(String id, String name, String header, String footer) {
+
+
     public GroupData(){
         this("", "", "", "");
     }
