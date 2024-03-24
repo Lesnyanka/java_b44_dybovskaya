@@ -13,6 +13,7 @@ import java.util.List;
 
 public class HibernateHelper extends HelperBase {
 
+    
     private SessionFactory sessionFactory;
 
     public HibernateHelper(ApplicationManager manager) {
@@ -132,6 +133,8 @@ public class HibernateHelper extends HelperBase {
 
         });
     }
+
+
 }
 
 

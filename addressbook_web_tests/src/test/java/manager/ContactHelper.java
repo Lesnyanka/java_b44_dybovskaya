@@ -31,6 +31,21 @@ public class ContactHelper extends HelperBase {
         openHomePage();
     }
 
+    public void createContactInGroupThroughHomePage(ContactData contact, GroupData group) {
+        createContact(contact);
+        selectGroupInList(group);
+        selectAddButton();
+        returnToHomePage();
+    }
+
+    private void selectGroupInList(GroupData group) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
+    }
+    private void selectAddButton() {
+        click(By.name("add"));
+    }
+
+
     private void selectGroup(GroupData group) {
        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
     }
@@ -62,6 +77,12 @@ public class ContactHelper extends HelperBase {
         removeSelectedContacts();
 
     }
+
+
+
+
+
+
 
     private void openContactPage() {
         click(By.linkText("add new"));
@@ -120,6 +141,23 @@ public class ContactHelper extends HelperBase {
         openHomePage();
         selectAllContacts();
         removeSelectedContacts();
+    }
+
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
+        openHomePage();
+        selectGroupWithContacts(group);
+        selectContact(contact);
+        selectRemoveButton();
+    }
+
+    private void selectRemoveButton() {
+        click(By.name("remove"));
+    }
+
+    private void selectGroupWithContacts(GroupData group) {
+        click(By.name("group"));
+        selectGroup(group);
+
     }
 
     private void selectAllContacts() {

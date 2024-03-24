@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static jdk.nio.zipfs.ZipFileAttributeView.AttrID.group;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ContactRemovalTests extends TestBase {
 
     @Test
@@ -22,7 +25,7 @@ public class ContactRemovalTests extends TestBase {
         var newContacts = app.hbm().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.remove(index);
-        Assertions.assertEquals(newContacts, expectedList);
+        assertEquals(newContacts, expectedList);
     }
 
     @Test
@@ -31,7 +34,17 @@ public class ContactRemovalTests extends TestBase {
             app.hbm().createContact(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact mobile"));
         };
         app.contacts().removeAllContacts();
-        Assertions.assertEquals(0, app.hbm().getContactCount());
+        assertEquals(0, app.hbm().getContactCount());
 
+    }
+
+    @Test
+    void canRemovalContactFromGroup(){
+        var contact = app.hbm().getContactList();
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        if (contact.size() == oldRelated.size()) {
+            app.hbm().getContactsInGroup(new GroupData("", "group name", "group header", "group footer"));}
+        }else if(contact.size() != oldRelated.size()) {
+        app.contacts().removeContactFromGroup(contact, group);
     }
 }
