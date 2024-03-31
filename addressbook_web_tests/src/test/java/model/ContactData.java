@@ -42,6 +42,15 @@ package model;
             return new model.ContactData(this.id, this.lastname,this.firstname, this.address, email, this.email2, this.email3, this.mobile, this.home, this.work, this.secondary);
         }
 
+        public model.ContactData withEmail2(String email2) {
+            return new model.ContactData(this.id, this.lastname, this.firstname, this.address, this.email, email2, this.email3, this.mobile, this.home, this.work, this.secondary);
+        }
+
+
+        public model.ContactData withEmail3(String email3) {
+            return new model.ContactData(this.id, this.lastname, this.firstname, this.address, this.email, this.email2, email3, this.mobile, this.home, this.work, this.secondary);
+        }
+
 
         public model.ContactData withHome(String home) {
             return new model.ContactData(this.id, this.lastname,this.firstname, this.address, this.email, this.email2, this.email3, this.mobile, home, this.work, this.secondary);
@@ -66,14 +75,7 @@ package model;
 
         }
 
-        public model.ContactData withEmail2(String email2) {
-            return new model.ContactData(this.id, this.lastname, this.firstname, this.address, this.email, email2, this.email3, this.mobile, this.home, this.work, this.secondary);
-        }
 
-
-        public model.ContactData withEmail3(String email3) {
-            return new model.ContactData(this.id, this.lastname, this.firstname, this.address, this.email, this.email2, email3, this.mobile, this.home, this.work, this.secondary);
-        }
 
 
 
