@@ -20,7 +20,8 @@ public class ContactRecord {
 
     public String address;
     public String email;
-
+    public String email2;
+    public String email3;
     public String mobile;
     public String home;
     public String work;

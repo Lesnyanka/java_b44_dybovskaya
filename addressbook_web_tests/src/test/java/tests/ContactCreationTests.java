@@ -122,7 +122,7 @@ public class ContactCreationTests extends TestBase {
         var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().createContactInGroupThroughHomePage(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
-        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+        Assertions.assertEquals(oldRelated.size() +1 , newRelated.size());
     }
 
 
