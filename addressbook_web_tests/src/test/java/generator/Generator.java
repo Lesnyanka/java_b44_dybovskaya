@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 //запускаемый класс, поэтому внутри нужна функция main//
 public class Generator {
@@ -55,30 +58,24 @@ public class Generator {
         }
     }
 
-    private Object generateContacts() {
-        var result = new ArrayList<ContactData>();
-        for (int i = 0; i < 2; i++) {
-            result.add(new ContactData()
-                    .withFirstname(CommonFunctions.randomString(i * 10))
-                    .withLastname(CommonFunctions.randomString(i * 10))
-                    .withAddress(CommonFunctions.randomString(i * 10))
-                    .withEmail(CommonFunctions.randomString(i * 10))
-                    .withMobile(CommonFunctions.randomString(i * 10)));
+    private Object generateDate(Supplier<Object> dataSupplier){
+        return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
+    }
 
-        }
-        return result;
+    private Object generateContacts() {
+        return generateDate(() -> new ContactData()
+                .withFirstname(CommonFunctions.randomString(10))
+                .withLastname(CommonFunctions.randomString(10))
+                .withAddress(CommonFunctions.randomString(10))
+                .withEmail(CommonFunctions.randomString(10))
+                .withMobile(CommonFunctions.randomString(10)));
     }
 
     private Object generateGroups() {
-        var result = new ArrayList<GroupData>();
-        for(int i = 0; i < count; i++){
-            result.add(new GroupData()
-                    .withName(CommonFunctions.randomString(i * 10))
-                    .withHeader (CommonFunctions.randomString(i * 10))
-                    .withFooter (CommonFunctions.randomString(i * 10)));
-        }
-        return result;
-
+        return generateDate(() -> new GroupData()
+                .withName(CommonFunctions.randomString(10))
+                .withHeader (CommonFunctions.randomString(10))
+                .withFooter (CommonFunctions.randomString(10)));
     }
 
     private void save(Object data) throws IOException {

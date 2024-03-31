@@ -11,7 +11,9 @@ public record Square(double side) {
         return a * a;
     }
 
-
+    public static void printPerimeter(Square s) {
+        System.out.println("Периметр квадрата со стороной " + s.side + " = " + s.perimeter());
+    }
 
 
     public double area() {

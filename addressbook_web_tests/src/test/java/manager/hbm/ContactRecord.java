@@ -20,7 +20,11 @@ public class ContactRecord {
 
     public String address;
     public String email;
+
     public String mobile;
+    public String home;
+    public String work;
+    public String phone2;
 
     public Date deprecated = new Date();
 
