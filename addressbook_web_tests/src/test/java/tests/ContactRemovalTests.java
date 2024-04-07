@@ -1,5 +1,6 @@
 package tests;
 
+
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
@@ -13,6 +14,8 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ContactRemovalTests extends TestBase {
+
+    private ContactData contact;
 
     @Test
     public void canRemoveContact() {
@@ -39,20 +42,22 @@ public class ContactRemovalTests extends TestBase {
 
     }
 
-    // @Test
-    //void canRemovalContactFromGroup(){
-        //if (app.hbm().getContactCount() == 0){
-            //app.hbm().createContact(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact mobile", "", "", ""));
+     @Test
+    void  canRemovalContactFromGroup(){
+         if (app.hbm().getContactCount() == 0){
+            app.hbm().createContact(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact email2", "contact email3", "contact mobile", "", "", ""));
+        }
+        else if (app.hbm().getGroupCount() == 0){
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+
+        //else if (0 == app.hbm().getContactsInGroup(group)) {
+            //app.contacts().createContactInGroupThroughHomePage(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact email2", "contact email3", "contact mobile", "", "", ""), new GroupData("", "group name", "group header", "group footer"));
         //};
-        //else if (app.hbm().getGroupCount() == 0){
-            //app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
-        //};
-        //else if (app.hbm().getContactsInGroup(group) == 0) {
-            //app.contacts().createContactInGroupThroughHomePage(new ContactData("", "contact lastname","contact firstname", "contact address", "contact email", "contact mobile", "", "", "" ), new GroupData("", "group name", "group header", "group footer"));
-        //};
-       // var oldRelated = app.hbm().getContactsInGroup(group);
-       // app.contacts().removeContactFromGroup(contact, group);
-       // var newRelated = app.hbm().getContactsInGroup(group);
-        //Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
-    //}
+        var group = app.hbm().getGroupList().get(0);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        app.contacts().removeContactFromGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
+    }
 }

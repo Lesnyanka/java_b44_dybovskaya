@@ -109,8 +109,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectContact(ContactData contact) {
-        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
-
+        click(By.xpath(String.format("//input[@id='%s']", contact.id())));
     }
 
     public boolean isContactPresent() {
@@ -163,7 +162,7 @@ public class ContactHelper extends HelperBase {
 
     private void selectGroupWithContacts(GroupData group) {
         click(By.name("group"));
-        selectGroup(group);
+        //selectGroup(group);
 
     }
 
