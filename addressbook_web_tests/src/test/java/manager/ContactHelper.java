@@ -38,7 +38,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContactInGroupThroughHomePage(ContactData contact, GroupData group) {
-        createContact(contact);
+        openHomePage();
         selectContact(contact);
         selectGroupInList(group);
         selectAddButton();
@@ -113,7 +113,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectContact(ContactData contact) {
-        click(By.xpath(String.format("//input[@id='%s']", contact.id())));
+        click(By.xpath(String.format("//input[@id ='%s']", contact.id())));
     }
 
     public boolean isContactPresent() {
@@ -153,7 +153,7 @@ public class ContactHelper extends HelperBase {
         removeSelectedContacts();
     }
 
-    public void removeContactFromGroup(GroupData group, ContactData contact) {
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
         openHomePage();
         selectGroupWithContacts(group);
         selectContact(contact);
