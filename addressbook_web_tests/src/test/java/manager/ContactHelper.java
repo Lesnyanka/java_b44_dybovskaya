@@ -57,6 +57,10 @@ public class ContactHelper extends HelperBase {
        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
     }
 
+    private void selectGroupUi(GroupData group) {
+        click(By.xpath(String.format("//select[@name='group']//option[@value='%s']",group.id())));
+    }
+
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openHomePage();
         selectContact(contact);
@@ -149,10 +153,11 @@ public class ContactHelper extends HelperBase {
         removeSelectedContacts();
     }
 
-    public void removeContactFromGroup(ContactData contact, GroupData group) {
+    public void removeContactFromGroup(GroupData group, ContactData contact) {
         openHomePage();
         selectGroupWithContacts(group);
         selectContact(contact);
+        //selectAllContacts();
         selectRemoveButton();
     }
 
@@ -162,7 +167,7 @@ public class ContactHelper extends HelperBase {
 
     private void selectGroupWithContacts(GroupData group) {
         click(By.name("group"));
-        //selectGroup(group);
+        selectGroupUi(group);
 
     }
 

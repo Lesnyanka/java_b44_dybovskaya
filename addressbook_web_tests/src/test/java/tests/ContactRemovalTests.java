@@ -56,7 +56,7 @@ public class ContactRemovalTests extends TestBase {
         //};
         var group = app.hbm().getGroupList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
-        app.contacts().removeContactFromGroup(contact, group);
+        app.contacts().removeContactFromGroup(group, contact);
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
     }
