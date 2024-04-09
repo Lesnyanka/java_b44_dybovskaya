@@ -1,5 +1,6 @@
 package manager;
 
+import manager.hbm.ContactRecord;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
@@ -112,8 +113,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contact.mobile());
     }
 
+
+
     private void selectContact(ContactData contact) {
         click(By.xpath(String.format("//input[@id ='%s']", contact.id())));
+
     }
 
     public boolean isContactPresent() {

@@ -50,6 +50,7 @@ public class ContactRemovalTests extends TestBase {
         else if (app.hbm().getGroupCount() == 0){
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
+        var contact = app.hbm().getContactList().get(0);
         var group = app.hbm().getGroupList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().removeContactFromGroup(contact, group);
