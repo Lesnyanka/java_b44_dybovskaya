@@ -8,12 +8,35 @@ public class UserHelper extends HelperBase{
     }
 
 
-    public void fillFormRegistration(UserData user) {
-         {
-            type(By.name("lastname"), contact.lastname());
-            type(By.name("firstname"), contact.firstname());
-            type(By.name("address"), contact.address());
-            type(By.name("email"), contact.email());
-            type(By.name("mobile"), contact.mobile());
+    public void startCreations(String user) {
+        openRegistrationsPage();
+        createNewAccount();
+        //fillUserForm(user);
+        pushCreateUser();
+
     }
+
+    private void pushCreateUser() {
+        click(By.linkText("Create User"));
+    }
+
+//    private void fillUserForm(String user) {
+//        type(By.name("username"), user.username());
+//        type(By.name("realname"), user.realname());
+//        type(By.name("email"), user.email());
+//    }
+
+    private void createNewAccount() {
+        click(By.linkText("Create New Account"));
+    }
+
+    private void openRegistrationsPage() {
+        click(By.linkText("manage_user_page"));
+    }
+
+    public void finishCreation(Object url, String password) {
+
+    }
+
+
 }
