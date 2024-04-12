@@ -10,12 +10,14 @@ public class UserRegistrationTests extends TestBase{
     void canRegisterUser(String username){
         var email = String.format("%s@localhost", username);
         //создать пользователя (адрес) на почтовом сервере(JamesHelper)
+        var password = "password";
         app.jamesCli().addUser("user2@localhost", "password");
         //заполняем форму создания и отправляем(браузер)
+        app.user().fillFormRegistration();
 
 
         //ждем почту(MailHelper)
-        app.mail().receive();
+        app.mail().receive(username, password);
         //извлечь ссылку из письма
 
         //проходим по ссылке и завершаем регистрацию пользователя(браузер)

@@ -118,6 +118,10 @@ public class ContactCreationTests extends TestBase {
         }
         var contact = app.hbm().getContactList().get(0);
         var group = app.hbm().getGroupList().get(0);
+        var contactInGroup = app.hbm().getContactsInGroup(group).contains(contact);
+        if(contactInGroup){
+            app.contacts().removeContactFromGroup(contact, group);
+        }
         var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().createContactInGroupThroughHomePage(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
