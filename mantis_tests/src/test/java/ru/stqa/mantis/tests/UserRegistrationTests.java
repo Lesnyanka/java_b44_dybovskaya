@@ -2,32 +2,40 @@ package ru.stqa.mantis.tests;
 
 import common.CommonFunctions;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.mantis.model.UserData;
 
 import java.time.Duration;
+import java.util.stream.Stream;
+
 
 public class UserRegistrationTests extends TestBase{
 
 
     private Duration duration;
+    public static Stream<String> randomUser(){
+        return Stream.of(CommonFunctions.randomString(8));
+    }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("randomUser")
 
-    void canRegisterUser(String username){
+    void canRegisterUser(String username, UserData user){
         //создать пользователя (адрес) на почтовом сервере(JamesHelper)
         var email = String.format("%s@localhost", username);
         var password = "password";
         app.jamesCli().addUser("user3@localhost", "password");
         app.mail().drain(username, password);
         //заполняем форму создания и отправляем(браузер)
-        //app.user().startCreations(user);
+        app.user().startCreations(user);
         //ждем почту(MailHelper)
         app.mail().receive(username, password, duration);
         //извлечь ссылку из письма
-        //var url = CommonFunctions.extractUrl(messages.get(0).content());
+        var messages = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
+        var url = CommonFunctions.extractUrl(messages.get(0).content());
         //проходим по ссылке и завершаем регистрацию пользователя(браузер)
-        //app.user().finishCreation(url, password);
+        app.user().finishCreation(url, password);
         //проверка, что пользователь может залогиниться(HttpSessionHelper)
         Assertions.assertTrue(app.http().isLoggedIn());
 

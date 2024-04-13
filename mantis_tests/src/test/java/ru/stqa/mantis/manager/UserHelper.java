@@ -1,6 +1,7 @@
 package ru.stqa.mantis.manager;
 
 import org.openqa.selenium.By;
+import ru.stqa.mantis.model.UserData;
 
 public class UserHelper extends HelperBase{
     public UserHelper(ApplicationManager manager){
@@ -8,10 +9,10 @@ public class UserHelper extends HelperBase{
     }
 
 
-    public void startCreations(String user) {
+    public void startCreations( UserData user) {
         openRegistrationsPage();
         createNewAccount();
-        //fillUserForm(user);
+        fillUserForm(user);
         pushCreateUser();
 
     }
@@ -20,11 +21,11 @@ public class UserHelper extends HelperBase{
         click(By.linkText("Create User"));
     }
 
-//    private void fillUserForm(String user) {
-//        type(By.name("username"), user.username());
-//        type(By.name("realname"), user.realname());
-//        type(By.name("email"), user.email());
-//    }
+    private void fillUserForm(UserData user) {
+        type(By.name("username"), user.username());
+        type(By.name("realname"), user.realname());
+        type(By.name("email"), user.email());
+    }
 
     private void createNewAccount() {
         click(By.linkText("Create New Account"));
