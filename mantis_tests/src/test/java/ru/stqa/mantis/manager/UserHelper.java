@@ -10,15 +10,20 @@ public class UserHelper extends HelperBase{
 
 
     public void startCreations( UserData user) {
-        openRegistrationsPage();
+        openManagePage();
+        clickUsersPage();
         createNewAccount();
         fillUserForm(user);
         pushCreateUser();
 
     }
 
+    private void clickUsersPage() {
+        click(By.xpath("//a[normalize-space()='Users']"));
+    }
+
     private void pushCreateUser() {
-        click(By.linkText("Create User"));
+        click(By.xpath("//input[@value='Create User']"));
     }
 
     private void fillUserForm(UserData user) {
@@ -28,11 +33,11 @@ public class UserHelper extends HelperBase{
     }
 
     private void createNewAccount() {
-        click(By.linkText("Create New Account"));
+        click(By.xpath("(//a[normalize-space()='Create New Account'])[1]"));
     }
 
-    private void openRegistrationsPage() {
-        click(By.linkText("manage_user_page"));
+    private void openManagePage() {
+        click(By.xpath("(//a)[14]"));
     }
 
     public void finishCreation(Object url, String password) {

@@ -21,16 +21,17 @@ public class UserRegistrationTests extends TestBase{
     @ParameterizedTest
     @MethodSource("randomUser")
 
-    void canRegisterUser(String username, UserData user){
+    void canRegisterUser(String username){
         //создать пользователя (адрес) на почтовом сервере(JamesHelper)
         var email = String.format("%s@localhost", username);
         var password = "password";
         app.jamesCli().addUser("user3@localhost", "password");
-        app.mail().drain(username, password);
+        app.session().login("administrator", "root");
         //заполняем форму создания и отправляем(браузер)
+        var user = new UserData("", "", "");
         app.user().startCreations(user);
         //ждем почту(MailHelper)
-        app.mail().receive(username, password, duration);
+        app.mail().receive(username, password, Duration.ofSeconds(60));
         //извлечь ссылку из письма
         var messages = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
         var url = CommonFunctions.extractUrl(messages.get(0).content());
