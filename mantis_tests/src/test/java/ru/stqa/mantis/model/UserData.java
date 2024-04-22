@@ -5,7 +5,7 @@ public record UserData (String username, String realname, String email) {
 
 
 
-    public UserData() {this("username", "realname", "user3@localhost");
+    public UserData() {this("username", "realname", "email");
     }
 
     public UserData withUsername(String username){

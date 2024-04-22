@@ -9,11 +9,11 @@ public class UserHelper extends HelperBase{
     }
 
 
-    public void startCreations( UserData user) {
+    public void startCreations( UserData username) {
         openManagePage();
         clickUsersPage();
         createNewAccount();
-        fillUserForm(user);
+        fillUserForm(username);
         pushCreateUser();
 
     }
@@ -26,10 +26,10 @@ public class UserHelper extends HelperBase{
         click(By.xpath("//input[@value='Create User']"));
     }
 
-    private void fillUserForm(UserData user) {
-        type(By.name("username"), user.username());
-        type(By.name("realname"), user.realname());
-        type(By.name("email"), user.email());
+    private void fillUserForm(UserData username) {
+        type(By.name("username"), username.username());
+        type(By.name("realname"), username.realname());
+        type(By.name("user3@localhost"), username.email());
     }
 
     private void createNewAccount() {
