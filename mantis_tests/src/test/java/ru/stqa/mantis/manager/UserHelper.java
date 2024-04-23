@@ -26,10 +26,10 @@ public class UserHelper extends HelperBase{
         click(By.xpath("//input[@value='Create User']"));
     }
 
-    private void fillUserForm(UserData username) {
-        type(By.name("username"), username.username());
-        type(By.name("realname"), username.realname());
-        type(By.name("user3@localhost"), username.email());
+    private void fillUserForm(UserData user) {
+        type(By.name("username"), user.username());
+        type(By.name("realname"), user.realname());
+        type(By.name("email"), user.email());
     }
 
     private void createNewAccount() {

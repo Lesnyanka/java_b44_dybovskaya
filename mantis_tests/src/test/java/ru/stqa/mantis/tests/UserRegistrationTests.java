@@ -2,6 +2,7 @@ package ru.stqa.mantis.tests;
 
 import common.CommonFunctions;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.mantis.model.UserData;
@@ -40,5 +41,10 @@ public class UserRegistrationTests extends TestBase{
         //проверка, что пользователь может залогиниться(HttpSessionHelper)
         Assertions.assertTrue(app.http().isLoggedIn());
 
+    }
+
+    @Test
+    void deleteUsers(){
+        app.mail().drain("username", "password" );
     }
 }
